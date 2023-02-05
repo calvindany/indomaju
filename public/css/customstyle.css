@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+
+.custom-padding {
+    padding-right: 30px;
+    padding-left: 30px;
+}
+
+.font-custom-1 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+@media (max-width: 450px) { 
+    .hide {
+        display: none;
+    }
+}
+@media (min-width: 1024px) { 
+    .custom-padding {
+        padding-left: 150px;
+        padding-right: 150px;
+    }
+}

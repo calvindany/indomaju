@@ -1,0 +1,52 @@
+<%- include('include/header') %>
+</head>
+
+<body>
+    <%- include('include/navigation') %>
+        <h1 class="text-center custom-padding my-4">Detail Barang</h1>
+        
+        <div class="custom-padding">
+            <div class="card" style="width: 100%;">
+                <div class="card-body py-4">
+                    <h5 class="card-title"><%= barang.namabarang %></h5>
+
+                    <h6 class="card-subtitle mb-2 text-muted">Jumlah Stok</h6>
+                    <p class="card-text"><%= barang.stok %></p>
+
+                    <h6 class="card-subtitle mb-2 text-muted">Kategori</h6>
+                    <% if (barang.kategori == "null" || barang.kategori == null) { %>
+                        <p class="card-text"> - </p>
+                    <% } else { %>
+                        <p class="card-text"><%= barang.kategori %></p>
+                    <% } %> 
+
+                    <h6 class="card-subtitle mb-2 text-muted">Modal</h6>
+                    <p class="card-text">Rp. <%= barang.modal %></p>
+
+                    <h6 class="card-subtitle mb-2 text-muted">Harga Jual</h6>
+                    <p class="card-text">Rp. <%= barang.harga %></p>
+                    
+                    <h6 class="card-subtitle mb-2 text-muted">Deskripsi</h6>                    
+                    <% if (barang.deskripsi == null) { %>
+                        <p class="card-text"> - </p>
+                    <% } else { %>
+                        <p class="card-text"><%= barang.deskripsi %></p>
+                    <% } %> 
+
+                    <div class="w-50 d-flex">
+                        <a class="btn btn-primary me-2 d-flex" style="display: none" href="#" role="button">
+                            <i class="bi bi-pencil-square me-2"></i>
+                            Edit
+                        </a>
+                        <form action="/admin/hapusbarang" method="POST">
+                            <input name="idbarang" value="<%= barang._id %>" type="hidden">
+                            <button class="btn btn-danger me-2 d-flex" role="button" type="submit">
+                                <i class="bi bi-trash-fill"></i>
+                                Hapus
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+<%- include('include/footer') %>

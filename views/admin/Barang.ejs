@@ -1,0 +1,60 @@
+<%- include('include/header') %>
+
+	<!-- link css -->
+	</head>
+
+	<body>
+		<%- include('include/navigation') %>
+
+		<h1 class="text-center font-custom-1 my-4">Tabel Barang</h1>
+
+		<section class=" d-flex justify-content-end custom-padding mb-4">
+            <a type="button" class="btn btn-primary" href="/admin/tambahbarang">Tambah</a>
+        </section>
+
+		<section class="custom-padding">
+			<table class="table table-md">
+				<thead>
+					<tr>
+						<th class="col-xl-3">Nama Barang</th>
+						<th class="col-xl-3 hide">Stok</th>
+						<th class="col-xl-2 hide">Modal</th>
+						<th class="col-xl-2 ">Harga</th>
+						<th class="text-center">Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% for (let i = 0; i < barang.length; i++) { %>
+						<tr style="height: 40px;" >
+							<td><%= barang[i].namabarang %></td>
+							<td class="hide"><%= barang[i].stok %></td>
+							<td class="hide"><%= barang[i].modal %></td>
+							<td><%= barang[i].harga %></td>
+							<td>
+								<div class="d-flex justify-content-center">
+									<a class="btn btn-primary me-2 d-flex" href="/admin/detailbarang/<%= barang[i]._id %>" role="button">
+										<i class="bi bi-file-text"></i>
+									</a>
+									
+									<div class="hide">
+										<a class="btn btn-primary me-2 d-flex" style="display: none" href="/admin/editbarang/<%= barang[i]._id %>" role="button">
+											<i class="bi bi-pencil-square"></i>
+										</a>
+									</div>
+
+									<form class="hide" action="/admin/hapusbarang" method="POST">
+										<input name="idbarang" value="<%= barang[i]._id %>" type="hidden">
+										<button class="btn btn-danger me-2 d-flex" role="button" type="submit">
+											<i class="bi bi-trash-fill"></i>
+										</button>
+									</form>
+								</div>
+							</td >
+						</tr>
+					<% } %>
+				</tbody>
+
+			</table>
+		</section>
+
+<%- include('include/footer') %>

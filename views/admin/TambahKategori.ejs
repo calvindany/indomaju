@@ -1,0 +1,44 @@
+<%- include('include/header') %>
+</head>
+
+<body>
+    <%- include('include/navigation') %>
+    <h1 class="custom-padding text-center my-4">Tambah Kategori</h1>
+    
+    <form action="/admin/tambahkategori" class="custom-padding my-1" method="POST">
+        <div class="mb-3">
+            <label class="form-label" for="kategori">Kategori</label>
+            <input type="text" class="form-control" name="kategori">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Simpan</button>
+
+        <hr class="my-4">
+    </form>
+
+    <section class="custom-padding m-auto">
+        <table class="table table-md">
+            <thead>
+                <tr>
+                    <th class="col-xl-3">Kategori</th>
+                    <th class="col-xl-2 text-center">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for (let i = 0; i < kategori.length; i++) { %>
+                    <tr style="height: 40px;" >
+                        <td><%= kategori[i].kategori %></td>
+                        <td class="d-flex justify-content-center">
+                            <form action="/admin/hapuskategori" method="POST">
+                                <input name="idkategori" value="<%= kategori[i]._id %>" type="hidden">
+                                <button class="btn btn-danger me-2 d-flex" role="button" type="submit">
+                                    <i class="bi bi-trash-fill"></i>
+                                </button>
+                            </form>
+                        </td >
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </section>
+    <%- include('include/footer') %>

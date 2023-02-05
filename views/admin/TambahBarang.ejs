@@ -1,0 +1,55 @@
+<%- include('include/header') %>
+</head>
+
+<body>
+    <%- include('include/navigation') %>
+        <h1 class="custom-padding text-center my-4">Tambah Barang</h1>
+
+        <form class="custom-padding my-1" action="/admin/<% if (editmode == true) { %>editbarang<% } else { %>tambahbarang<% } %>" method="POST">
+
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label" for="email">Nama Barang</label>
+                <input type="text" class="form-control" name="namabarang" value="<% if(editmode) { %><%= barang.namabarang %><% } %>">
+            </div>
+
+            <div class="mb-3">
+                <label for="text" class="form-label">Jumlah</label>
+                <input type="number" class="form-control" name="stok" value="<% if(editmode) { %><%= barang.stok %><% } %>">
+            </div>
+
+            <div class="mb-3">
+                <label for="kategori" class="form-label"> Kategori</label>
+                <select class="form-select" name="kategori" aria-describedby="emailHelp">
+                    <% if(editmode) { %>
+                        <option selected value="<%= barang.kategori %>"><%= barang.kategori %></option>
+                        <% } else { %>
+                            <option selected value="null">Pilih Disini</option>
+                        <% } %>
+                        <option value="paralon">Paralon</option>
+                        <option value="baut">Baut</option>
+                        <option value="pasir">Pasir</option>
+                    </select>
+
+                    <div id="kategorimessage" class="form-text">Tambah kategori <a href="/admin/kategori">klik disini</a></div>
+            </div>
+
+            <div class="mb-3 d-flex justify-content-between col-12 col-sm-10 col-md-8 col-xl-5">
+                <div class="mb-3">
+                    <label for="text" class="form-label">Modal</label>
+                    <input type="number" class="form-control" name="modal" value="<% if(editmode) { %><%= barang.modal %><% } %>">
+                </div>
+                <div>
+                    <label for="text" class="form-label">Harga</label>
+                    <input type="number" class="form-control" name="harga" value="<% if(editmode) { %><%= barang.harga %><% } %>">
+                </div>
+            </div>
+
+            <% if(editmode == true) { %>
+                <input type="hidden" value="<%= barang._id %>" name="idbarang">
+            <% } %>
+
+            <button type="submit" class="btn btn-primary">Simpan</button>
+
+        </form>
+        <%- include('include/footer') %>
+</body>
